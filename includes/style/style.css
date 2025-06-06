@@ -77,7 +77,6 @@ header, section, footer {
 }
 .banner {
     position: relative;
-    width: 100%;
     height: 300px;
     overflow: hidden;
     background: #1a1a1a;
@@ -134,6 +133,44 @@ nav a {
 nav a:hover {
     color: #ff4500;
 }
+.burger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.burger span {
+    display: block;
+    height: 3px;
+    background-color: #ff6b00;
+    border-radius: 2px;
+}
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.overlay-burger {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    z-index: 8;
+}
+.overlay-burger.active {
+    display: block;
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
 h1, h2, h3 {
     color: #ff6b00;
 }
@@ -331,4 +368,133 @@ footer {
 @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-20px); }
+}
+
+@media screen and (max-width: 768px) {
+    h2, h3, p{
+        text-align: center;
+    }
+    
+    .nav-links {
+        display: none !important;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: #000;
+        text-align: center;
+        gap: 10px;
+        padding: 10px 0;
+        z-index: 9;
+    }
+    .nav-links.active {
+        display: flex !important;
+    }
+    .burger {
+        display: flex;
+    }
+    .project-media {
+        width: 100vw;
+        max-width: 400px;
+        height: 220px;
+        margin: 0 auto 16px auto;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #181818;
+        box-shadow: 0 8px 24px rgba(255,107,0,0.18), 0 1.5px 8px rgba(0,0,0,0.12);
+    }
+    .project-media img,
+    .project-media video,
+    .project-media iframe {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 18px;
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    .burger {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #000;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        width: 200px;
+        padding: 10px;
+        border: 1px solid #ff6b00;
+        border-radius: 8px;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    nav > div:last-child {
+        display: flex;
+        flex-direction: column;
+    }
+    nav a {
+        margin: 10px 0;
+    }
+    .banner-text h1 {
+        font-size: 1.8em;
+    }
+    .banner-text p {
+        font-size: 1em;
+    }
+    .skills-grid {
+        gap: 15px;
+    }
+    .skill-card {
+        width: 90px;
+        height: 90px;
+        padding: 10px;
+    }
+    .skill-card img {
+        width: 60px;
+        height: 60px;
+    }
+    .project {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .project-media,
+    .project-description {
+        width: 100%;
+    }
+    .intro img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner {
+        height: 200px;
+    }
+    header, section, footer {
+        padding: 10px 10px;
+    }
+    h2 {
+        font-size: 1.5em;
+    }
+    p {
+        font-size: 1em;
+    }
+    .project-media {
+        height: 160px;
+        max-width: 98vw;
+    }
 }

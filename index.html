@@ -16,8 +16,13 @@
     </div>
 
     <nav>
-        <div>Dimitri Zavodszki</div>
-        <div>
+        <div class="nav-brand">Dimitri Zavodszki</div>
+        <div class="burger" id="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-links" id="nav-links">
             <a href="#about">À propos</a>
             <a href="#skills">Compétences</a>
             <a href="#experience">Expériences</a>
@@ -25,6 +30,7 @@
             <a href="#contact">Contact</a>
         </div>
     </nav>
+
 
     <section class="banner">
         <video autoplay loop muted playsinline class="banner-video">
@@ -235,7 +241,7 @@
             <div class="project-description">
                 <h3>Projets personnels d'application Java</h3>
                 <p>Développement d'applications Java pour expérimenter la programmation orientée objet, la gestion des bases de données sous Hibernate et les interfaces utilisateur sous JavaFX. Cliquez ci-dessous pour voir la vidéo en plus grand.</p>
-                <a href="includes/videos/exemple-java.mp4">ici</a>
+                <a href="includes/videos/exemple-java.mp4">ICI</a>
             </div>
         </div>
     </section>
@@ -251,7 +257,7 @@
         <h2>Contact</h2>
         <p>Email : <a href="mailto:dimitrizavodszki@gmail.com">dimitrizavodszki@gmail.com</a></p>
         <p>Téléphone : 07 69 56 87 49</p>
-        <p>LinkedIn : <a href="https://www.linkedin.com/in/dimitri-zavodszki-5266152a2/" target="_blank">https://www.linkedin.com/in/dimitri-zavodszki-5266152a2/"</a></p>
+        <p>LinkedIn : <a href="https://www.linkedin.com/in/dimitri-zavodszki-5266152a2/" target="_blank">https://www.linkedin.com/in/dimitri-zavodszki-5266152a2/</a></p>
         <p>Mon GitHub : <a href="https://github.com/Fer0x356" target="_blank">https://github.com/Fer0x356</a></p>
     </section>
 
@@ -262,19 +268,55 @@
     <div class="shape small" style="top: 200px; left: 80px;"></div>
     <div class="shape medium" style="top: 600px; right: 120px;"></div>
     <div class="shape large" style="top: 1200px; left: 50px;"></div>
-
+    <!-- Overlay pour menu burger -->
+    <div class="overlay-burger" id="overlay-burger"></div>
     <script>
+        // Loader
         window.addEventListener("load", () => {
             document.body.classList.add("loaded");
         });
+
+        // Animation fadeInUp sur scroll
         window.addEventListener('scroll', () => {
             document.querySelectorAll('section').forEach(section => {
                 const rect = section.getBoundingClientRect();
-                if(rect.top < window.innerHeight - 100){
+                if (rect.top < window.innerHeight - 100) {
                     section.style.animation = 'fadeInUp 1s ease forwards';
                 }
             });
         });
+
+        // Menu burger responsive
+        const burger = document.getElementById('burger');
+        const navLinks = document.getElementById('nav-links');
+        const navLinksItems = document.querySelectorAll('.nav-links a');
+        const overlayBurger = document.getElementById('overlay-burger');
+
+        function openMenu() {
+            navLinks.classList.add('active');
+            overlayBurger.classList.add('active');
+            document.body.classList.add('menu-open');
+        }
+        function closeMenu() {
+            navLinks.classList.remove('active');
+            overlayBurger.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
+
+        burger.addEventListener('click', () => {
+            if(navLinks.classList.contains('active')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+
+        navLinksItems.forEach(link => {
+            link.addEventListener('click', () => {
+                closeMenu();
+            });
+        });
+        overlayBurger.addEventListener('click', closeMenu);
     </script>
 </body>
 </html>
